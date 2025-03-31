@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute of Engineering &amp; Technology, DAVV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 5px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .top-bar-left {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .top-bar-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            padding: 10px 0;
+            border-bottom: 3px solid #ff9800;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .logo img {
+            height: 80px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            color: #0f4c81;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text h2 {
+            color: #666;
+            font-size: 16px;
+            font-weight: normal;
+        }
+        
+        .accreditation {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .accreditation img {
+            height: 60px;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #0f4c81;
+        }
+        
+        .nav-items {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-items li {
+            position: relative;
+        }
+        
+        .nav-items li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-items li a:hover {
+            background-color: #ff9800;
+        }
+        
+        /* Slideshow */
+        .slideshow {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 400px;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        /* Announcements */
+        .announcements {
+            background-color: #f5f5f5;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .announcements-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .announcements-title {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+        
+        .announcements-scroll {
+            overflow: hidden;
+            flex: 1;
+        }
+        
+        .announcements-text {
+            display: inline-block;
+            animation: scroll-left 20s linear infinite;
+            white-space: nowrap;
+        }
+        
+        @keyframes scroll-left {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 40px 0;
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-block {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            background-color: #ff9800;
+            color: white;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+        
+        .feature-block h3 {
+            color: #0f4c81;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 40px 0;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .section-title {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            color: #0f4c81;
+            font-size: 24px;
+            display: inline-block;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff9800;
+        }
+        
+        /* About Section */
+        .about-content {
+            margin-bottom: 30px;
+        }
+        
+        .about-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: #0f4c81;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        /* News Section */
+        .news-list {
+            list-style: none;
+        }
+        
+        .news-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-date {
+            background-color: #0f4c81;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+        
+        .news-title {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .news-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Events Section */
+        .events-list {
+            list-style: none;
+        }
+        
+        .event-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .event-item:last-child {
+            border-bottom: none;
+        }
+        
+        .event-date {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            min-width: 70px;
+            margin-right: 15px;
+        }
+        
+        .event-day {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .event-month {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        
+        .event-details h4 {
+            color: #0f4c81;
+            margin-bottom: 5px;
+        }
+        
+        .event-details p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Counter Section */
+        .counter-section {
+            background-color: #0f4c81;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .counter-item h3 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #ff9800;
+        }
+        
+        .counter-item p {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        
+        /* Faculty Profiles */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .faculty-card {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .faculty-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            background-color: #ddd;
+        }
+        
+        .faculty-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .faculty-name {
+            color: #0f4c81;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .faculty-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .social-links a {
+            color: #0f4c81;
+            margin: 0 5px;
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 50px 0 20px;
+            font-size: 14px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #ff9800;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: #ff9800;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .counter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                flex-direction: column;
+                margin-bottom: 15px;
+            }
+            
+            .accreditation {
+                margin-top: 15px;
+            }
+            
+            .nav-items {
+                flex-direction: column;
+            }
+            
+            .nav-items li a {
+                text-align: center;
+            }
+            
+            .features-grid,
+            .counter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .slideshow {
+                height: 250px;
+            }
+            
+            .slide {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span>Email: director.iet@dauniv.ac.in</span>
+                    <span>Phone: +91-731-2764385</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#">Student Login</a>
+                    <a href="#">Faculty Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/api/placeholder/80/80" alt="IET DAVV Logo">
+                    <div class="logo-text">
+                        <h1>Institute of Engineering &amp; Technology</h1>
+                        <h2>Devi Ahilya Vishwavidyalaya, Indore</h2>
+                    </div>
+                </div>
+                <div class="accreditation">
+                    <img src="/api/placeholder/60/60" alt="NBA Accredited">
+                    <img src="/api/placeholder/60/60" alt="NAAC A+ Grade">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-items">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Academics</a></li>
+                <li><a href="#">Departments</a></li>
+                <li><a href="#">Admissions</a></li>
+                <li><a href="#">Placements</a></li>
+                <li><a href="#">Research</a></li>
+                <li><a href="#">Students</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Slideshow -->
+    <div class="slideshow">
+        <div class="slide active" style="background-image: url('/api/placeholder/1200/400')"></div>
+        <div class="slide" style="background-image: url('/api/placeholder/1200/400')"></div>
+        <div class="slide" style="background-image: url('/api/placeholder/1200/400')"></div>
+    </div>
+    
+    <!-- Announcements -->
+    <section class="announcements">
+        <div class="container">
+            <div class="announcements-content">
+                <div class="announcements-title">Latest Updates</div>
+                <div class="announcements-scroll">
+                    <div class="announcements-text">
+                        Admissions Open for 2025-26 Academic Year | 
+                        Upcoming campus recruitment drive on April 15, 2025 | 
+                        Research paper presentation competition on May 5, 2025 | 
+                        International Conference on Engineering Innovations - June 2025
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-block">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Academic Excellence</h3>
+                    <p>Our institute offers rigorous academic programs taught by experienced faculty members, preparing students for successful careers.</p>
+                </div>
+                <div class="feature-block">
+                    <div class="feature-icon">💼</div>
+                    <h3>100% Placement Assistance</h3>
+                    <p>Our dedicated Training & Placement Cell ensures students get placed in top companies through campus recruitment drives.</p>
+                </div>
+                <div class="feature-block">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Research Opportunities</h3>
+                    <p>State-of-the-art laboratories and research facilities for students to explore and innovate in various fields.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="left-column">
+                    <div class="section-title">
+                        <h2>About IET DAVV</h2>
+                    </div>
+                    <div class="about-content">
+                        <p>Institute of Engineering & Technology (IET) is one of the premier engineering institutes of Madhya Pradesh, established in 1996 as an autonomous institute under Devi Ahilya Vishwavidyalaya, Indore. The institute has evolved into a center of excellence in technical education.</p>
+                        <p>IET DAVV offers undergraduate, postgraduate, and doctoral programs in various disciplines of engineering and technology. The institute has well-equipped laboratories, workshops, and a rich central library to support academic and research activities.</p>
+                        <p>The institute maintains a close relationship with industry to provide students with practical exposure and enhance their employability. IET DAVV has been consistently ranked among the top engineering colleges in Central India.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                    
+                    <div class="section-title">
+                        <h2>Latest News</h2>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div class="news-date">March 25, 2025</div>
+                            <div class="news-title">MoU Signed with Leading Tech Company</div>
+                            <div class="news-text">IET DAVV has signed a Memorandum of Understanding with a leading technology company to establish a Center of Excellence in Artificial Intelligence and Machine Learning.</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">March 18, 2025</div>
+                            <div class="news-title">Student Project Wins National Award</div>
+                            <div class="news-text">A team of final year students from Computer Science department has won the First Prize at the National Innovation Challenge 2025 for their project on Smart Healthcare Solutions.</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">March 10, 2025</div>
+                            <div class="news-title">Faculty Research Paper Published in International Journal</div>
+                            <div class="news-text">Dr. Sharma's research paper on sustainable energy solutions has been published in a prestigious international journal with high impact factor.</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="right-column">
+                    <div class="section-title">
+                        <h2>Upcoming Events</h2>
+                    </div>
+                    <ul class="events-list">
+                        <li class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">15</div>
+                                <div class="event-month">Apr</div>
+                            </div>
+                            <div class="event-details">
+                                <h4>Campus Recruitment Drive</h4>
+                                <p>Multiple companies visiting campus for recruitment of 2025 batch students.</p>
+                            </div>
+                        </li>
+                        <li class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">05</div>
+                                <div class="event-month">May</div>
+                            </div>
+                            <div class="event-details">
+                                <h4>Research Paper Presentation</h4>
+                                <p>National level research paper presentation competition for engineering students.</p>
+                            </div>
+                        </li>
+                        <li class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">20</div>
+                                <div class="event-month">May</div>
+                            </div>
+                            <div class="event-details">
+                                <h4>Technical Workshop</h4>
+                                <p>Two-day workshop on Internet of Things (IoT) applications in various industries.</p>
+                            </div>
+                        </li>
+                        <li class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">10</div>
+                                <div class="event-month">Jun</div>
+                            </div>
+                            <div class="event-details">
+                                <h4>International Conference</h4>
+                                <p>International Conference on Engineering Innovations and Sustainable Development.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="section-title" style="margin-top: 30px;">
+                        <h2>Quick Links</h2>
+                    </div>
+                    <ul class="footer-links" style="margin-bottom: 30px;">
+                        <li><a href="#">➤ Academic Calendar</a></li>
+                        <li><a href="#">➤ Admission Procedure</a></li>
+                        <li><a href="#">➤ Placement Statistics</a></li>
+                        <li><a href="#">➤ Results</a></li>
+                        <li><a href="#">➤ Anti-Ragging Cell</a></li>
+                        <li><a href="#">➤ Women's Grievance Cell</a></li>
+                        <li><a href="#">➤ Fee Structure</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Counter Section -->
+    <section class="counter-section">
+        <div class="container">
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <h3>28+</h3>
+                    <p>Years of Excellence</p>
+                </div>
+                <div class="counter-item">
+                    <h3>5000+</h3>
+                    <p>Students</p>
+                </div>
+                <div class="counter-item">
+                    <h3>200+</h3>
+                    <p>Faculty Members</p>
+                </div>
+                <div class="counter-item">
+                    <h3>95%</h3>
+                    <p>Placement Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Faculty Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Faculty</h2>
+            </div>
+            <div class="faculty-grid">
+                <div class="faculty-card">
+                    <div class="faculty-image">
+                        <img src="/api/placeholder/120/120" alt="Faculty">
+                    </div>
+                    <div class="faculty-name">Dr. Rajesh Kumar</div>
+                    <div class="faculty-title">Director</div>
+                    <div class="social-links">
+                        <a href="#">📧</a>
+                        <a href="#">🔗</a>
+                    </div>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-image">
+                        <img src="/api/placeholder/120/120" alt="Faculty">
+                    </div>
+                    <div class="faculty-name">Dr. Sunita Sharma</div>
+                    <div class="faculty-title">HOD, CSE</div>
+                    <div class="social-links">
+                        <a href="#">📧</a>
+                        <a href="#">🔗</a>
+                    </div>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-image">
+                        <img src="/api/placeholder/120/120" alt="Faculty">
+                    </div>
+                    <div class="faculty-name">Dr. Amit Jain</div>
+                    <div class="faculty-title">HOD, ECE</div>
+                    <div class="social-links">
+                        <a href="#">📧</a>
+                        <a href="#">🔗</a>
+                    </div>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-image">
+                        <img src="/api/placeholder/120/120" alt="Faculty">
+                    </div>
+                    <div class="faculty-name">Dr. Priya Gupta</div>
+                    <div class="faculty-title">HOD, ME</div>
+                    <div class="social-links">
+                        <a href="#">📧</a>
+                        <a href="#">🔗</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Institute of Engineering & Technology (IET) is an autonomous institute under Devi Ahilya Vishwavidyalaya, Indore, established in 1996. The institute offers undergraduate, postgraduate and doctoral programs in various disciplines of engineering and technology.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Important Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">DAVV University</a></li>
+                        <li><a href="#">AICTE</a></li>
+                        <li><a href="#">UGC</a></li>
+                        <li><a href="#">DTE, Madhya Pradesh</a></li>
+                        <li><a href="#">NBA</a></li>
+                        <li><a href="#">NAAC</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i>📍</i> Khandwa Road, Indore - 452017, Madhya Pradesh, India</p>
+                        <p><i>📞</i> +91-731-2764385</p>
+                        <p><i>📧</i> director.iet@dauniv.ac.in</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Institute of Engineering & Technology, DAVV. All Rights Reserved.</p>
+                <p>Designed and Developed by IET Web Team</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
